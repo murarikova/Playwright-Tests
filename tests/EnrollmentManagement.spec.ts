@@ -1,8 +1,18 @@
-const {test, expect} = require ('@playwright/test');
-const Login = require('./Login.spec')
+import {test, expect} from '@playwright/test';
+
+test.beforeEach(async ({ page }, testInfo) => {
+    console.log(`Running ${testInfo.title}`);
+    await page.goto('https://mus.ph00a1.cz.infra/ui');
+    expect(page.url()).toBe('https://sso.ph00a1.cz.infra/opensso/UI/Login?goto=https://mus.ph00a1.cz.infra/ui');
+    await page.locator('#IDToken1').fill('much_tester');
+    await page.locator('#IDToken1').press('Tab');
+    await page.locator('#IDToken2').fill('much_tester');
+    await page.getByRole('button', { name: 'Log In' }).click();
+    await page.getByLabel('Menu').click();
+  });
+  
 
 test ('Enrollment Management', async ({page}) => {
-await Login(page);
 await expect(page.locator('#GLOBAL_USER_MANAGEMENT')).toContainText('User management');
 await page.getByRole('menuitem', { name: 'User management' }).click();
 await page.locator('input[name="form\\.username"]').click();
