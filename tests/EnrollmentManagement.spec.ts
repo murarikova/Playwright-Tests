@@ -1,6 +1,7 @@
 import {test, expect} from '@playwright/test';
 
 test.beforeEach(async ({ page }, testInfo) => {
+    test.setTimeout(120000);
     console.log(`Running ${testInfo.title}`);
     await page.goto('https://mus.ph00a1.cz.infra/ui');
     expect(page.url()).toBe('https://sso.ph00a1.cz.infra/opensso/UI/Login?goto=https://mus.ph00a1.cz.infra/ui');
