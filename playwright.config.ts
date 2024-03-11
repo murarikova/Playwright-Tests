@@ -1,5 +1,4 @@
 import { defineConfig, devices} from '@playwright/test';
-import { testPlanFilter } from "allure-playwright/dist/testplan";
 
 
 
@@ -13,9 +12,6 @@ import { testPlanFilter } from "allure-playwright/dist/testplan";
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-
-  grep: testPlanFilter(),
-  reporter: [["line"],["allure playwright"]],
 
   testDir: './tests',
   /* Run tests in files in parallel */
