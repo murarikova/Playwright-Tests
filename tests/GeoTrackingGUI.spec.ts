@@ -60,7 +60,6 @@ test('GeoTracking GUI', async ({ page }) => {
   await expect(page.locator('li').filter({ hasText: 'Date' }).getByRole('textbox')).toBeVisible();
   await expect(page.getByRole('list').locator('button')).toBeVisible();
   await page.getByRole('list').locator('button').click();
-  await page.getByRole('button', { name: '5', exact: true }).click();
   await page.getByRole('button', { name: 'OK' }).click();
   await expect(page.getByRole('list')).toContainText('Planned vs. real location distance (meters)');
   await expect(page.locator('input[name="dailyRoute\\.distanceThreshold"]')).toHaveValue('100');
